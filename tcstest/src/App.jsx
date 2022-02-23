@@ -8,29 +8,19 @@ import {
 } from "./contexts/SecurityContext";
 
 const AppRender = ({ match }) => {
-  const [{ }, { }] = useContext(SecurityContext)
+  const [{ }, {validateText }] = useContext(SecurityContext)
 
   return (
     <div className="flex">
-      
+
    <Form
-    onSubmit={onSubmit}
-    validate={validate}
+    onSubmit={validateText}
+  
     render={({ handleSubmit }) => (
       <form onSubmit={handleSubmit}>
         <h2>Simple Default Input</h2>
-        <div>
-          <label>First Name</label>
-          <Field name="firstName" component="input" placeholder="First Name" />
-        </div>
-
-        <h2>An Arbitrary Reusable Input Component</h2>
-        <div>
-          <label>Interests</label>
-          <Field name="interests" component={InterestPicker} />
-        </div>
-
-        <h2>Render Function</h2>
+       
+       
         <Field
           name="bio"
           render={({ input, meta }) => (
@@ -42,16 +32,6 @@ const AppRender = ({ match }) => {
           )}
         />
 
-        <h2>Render Function as Children</h2>
-        <Field name="phone">
-          {({ input, meta }) => (
-            <div>
-              <label>Phone</label>
-              <input type="text" {...input} placeholder="Phone" />
-              {meta.touched && meta.error && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
 
         <button type="submit">Submit</button>
       </form>
